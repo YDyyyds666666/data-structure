@@ -9,7 +9,7 @@ public:
 	LinkList() { front = new Node<T>; front->next = NULL; };
 	LinkList(T a[],int n);
 	
-	//º¯ÊıÉùÃ÷Óëº¯ÊıÊµÏÖÖ»ÄÜÓĞÒ»¸öÓĞÄ¬ÈÏ²ÎÊı¡£
+	//å‡½æ•°å£°æ˜ä¸å‡½æ•°å®ç°åªèƒ½æœ‰ä¸€ä¸ªæœ‰é»˜è®¤å‚æ•°ã€‚
 	~LinkList();
 	void PrintList();
 	int GetLength();
@@ -24,15 +24,16 @@ private:
 
 template<class T>
 LinkList<T>::LinkList(T a[],  int n) {
-	//Í·²å·¨
+	//æ³¨æ„nä¸å¤§äºæ•°ç»„açš„é•¿åº¦
+	//å¤´æ’æ³•
 	/*front = new Node<T>;
 	front->next = NULL;
 	for (int i = n - 1; i >= 0; i--) {
 		Node<T>* temp = new Node<T>(a[i],front->next);
 		front->next = s;
 	}*/
-	//Î²²å·¨
-	front = new Node<T>();  //¼ÓÀ¨ºÅ
+	//å°¾æ’æ³•
+	front = new Node<T>();  //åŠ æ‹¬å·
 	front->next = nullptr;
 	Node<T>* rear = front;
 	for (int i = 0; i < n; i++) {
@@ -54,7 +55,7 @@ template<class T>
 void LinkList<T>::PrintList() {
 	Node<T>* temp = front->next;
 	if (!temp) {
-		cout << "Á´±íÎª¿Õ" << endl;
+		cout << "é“¾è¡¨ä¸ºç©º" << endl;
 		return;
 	}
 	while (temp) {
@@ -77,15 +78,15 @@ template<class T>
 Node<T>* LinkList<T>::Get(int i) {
 	Node<T>* temp = front;
 	if (i <0) {
-		cout << "Î»ÖÃ²»ºÏ·¨" << endl;
+		cout << "ä½ç½®ä¸åˆæ³•" << endl;
 		return NULL;
 	}           
-	//¹æ¶¨µÈÓÚ0Ê± ·µ»ØÍ·½áµã
+	//è§„å®šç­‰äº0æ—¶ è¿”å›å¤´ç»“ç‚¹
 	if (i == 0) { return front; }
 	for (int j = 0; j < i; j++) {
 		if (temp->next) { temp = temp->next; }
 		else { 
-			cout << "Î»ÖÃ³¬³ö·¶Î§" << endl;
+			cout << "ä½ç½®è¶…å‡ºèŒƒå›´" << endl;
 			return NULL; 
 		};
 	}
@@ -96,10 +97,10 @@ template<class T>
 int LinkList<T>::Locate(T x) {
 	Node<T>* temp = front->next;
 	if (!temp) {
-		cout << "¿ÕÁ´±í" << endl;
+		cout << "ç©ºé“¾è¡¨" << endl;
 		return -1;
 	}
-	int i = 0;              //¹æ¶¨Ë÷Òı´Ó1¿ªÊ¼
+	int i = 0;              //è§„å®šç´¢å¼•ä»1å¼€å§‹
 	while (temp) {
 		i++;
 		if (temp->data == x) {
@@ -107,15 +108,15 @@ int LinkList<T>::Locate(T x) {
 		}
 		temp = temp->next;
 	}
-	cout << "Î´ÕÒµ½ÔªËØ" << endl;
+	cout << "æœªæ‰¾åˆ°å…ƒç´ " << endl;
 	return -1;
 };
 template<class T>
 void LinkList<T>::Insert(int i, T x) {
-	//Î»ÖÃ´Ó1¿ªÊ¼ ÎÒÃÇ¹æ¶¨¿ÉÒÔ²åÈëµ½×îºóÒ»¸öÔªËØµÄÎ»ÖÃµÄºóÃæ
+	//ä½ç½®ä»1å¼€å§‹ æˆ‘ä»¬è§„å®šå¯ä»¥æ’å…¥åˆ°æœ€åä¸€ä¸ªå…ƒç´ çš„ä½ç½®çš„åé¢
 	Node<T>* node = Get(i-1);
 	if (!node) {
-		cout << "ÊäÈëÎ»ÖÃ²»ºÏ·¨" << endl;
+		cout << "è¾“å…¥ä½ç½®ä¸åˆæ³•" << endl;
 		return;
 	}
 	Node<T>* temp = new Node<T>(x, node->next);
@@ -125,13 +126,13 @@ void LinkList<T>::Insert(int i, T x) {
 template<class T>
 T LinkList<T>::Delete(int i){
 	if (i <= 0) {
-		cout << "É¾³ıÎ»ÖÃ´íÎó" << endl;
+		cout << "åˆ é™¤ä½ç½®é”™è¯¯" << endl;
 		return NULL;
 	} 
 	Node<T>* temp1 = Get(i-1);
 	Node<T>* temp2 = Get(i);
 	if (!temp2 ) {
-		cout << "É¾³ıÎ»ÖÃ³¬³ö·¶Î§" << endl;
+		cout << "åˆ é™¤ä½ç½®è¶…å‡ºèŒƒå›´" << endl;
 		return NULL;
 	}
 	temp1->next = temp2->next;
@@ -145,7 +146,7 @@ T LinkList<T>::Delete(int i){
 //	Node<T>* p = front->next;
 //	Node<T>* q;
 //	front->next = NULL;
-//	q = front->next;        // q = new Node<T>(p->data) ÎŞ·¨ÎªÁ´±íÌí¼Ó½áµã
+//	q = front->next;        // q = new Node<T>(p->data) æ— æ³•ä¸ºé“¾è¡¨æ·»åŠ ç»“ç‚¹
 //	Node<T>* temp;
 //	while (p) {
 //		q = new Node<T>(p->data);
