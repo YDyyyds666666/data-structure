@@ -2,9 +2,20 @@
 #include<iostream>
 #include<vector>
 #include "Queue.h"
-#include "BiNode.h"
 #include "Stack.h"
 using namespace std;
+class BiNode {
+public:
+	char data;
+	BiNode* lchild, * rchild;
+	BiNode(){
+	}
+	BiNode(char data, BiNode* lchild=nullptr ,BiNode* rchild=nullptr) {
+		this->data = data; 
+		this->lchild = lchild;
+		this->rchild = rchild;
+	}
+};
 class element {
 public:
 	BiNode* node;
@@ -20,7 +31,7 @@ private:
 	BiNode* root;
 public:
 	BiTree() {
-		cout << "ÒÔÇ°Ðò±éÀúË³ÐòÊäÈë×Ö·û£¬¿Õ½ÚµãÊ¹ÓÃ#" << endl;
+		cout << "ä»¥å‰åºéåŽ†é¡ºåºè¾“å…¥å­—ç¬¦ï¼Œç©ºèŠ‚ç‚¹ä½¿ç”¨#" << endl;
 		root = create(root);
 	}
 	BiTree(vector<char>& arr) {
@@ -127,7 +138,7 @@ void BiTree::postOrder() {
 	while (p != NULL || !s.Empty()) {
 		if (p != NULL) {
 			element elem(p,1);
-			s.Push(elem);           //µÚÒ»´ÎÈëÕ»
+			s.Push(elem);           //ç¬¬ä¸€æ¬¡å…¥æ ˆ
 			p = p->lchild;
 		}
 		else {
