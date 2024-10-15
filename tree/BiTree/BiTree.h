@@ -2,19 +2,25 @@
 #include<iostream>
 #include<vector>
 #include "Queue.h"
-#include "BiNode.h"
 #include "Stack.h"
-using namespace std;
-struct element {
-	BiNode* node;
-	int flag;
+class BiNode {
+public:
+	char data;
+	BiNode* lchild, * rchild;
+	BiNode(){
+	}
+	BiNode(char data, BiNode* lchild=nullptr ,BiNode* rchild=nullptr) {
+		this->data = data; 
+		this->lchild = lchild;
+		this->rchild = rchild;
+	}
 };
 class BiTree {
 private:
 	BiNode* root;
 public:
 	BiTree() { 
-		cout << "ÒÔÇ°Ðò±éÀúË³ÐòÊäÈë×Ö·û£¬¿Õ½ÚµãÊ¹ÓÃ#" << endl;
+		cout << "ä»¥å‰åºéåŽ†é¡ºåºè¾“å…¥å­—ç¬¦ï¼Œç©ºèŠ‚ç‚¹ä½¿ç”¨#" << endl;
 		root = create(root); 
 	}
 	BiTree(vector<char>& arr) {
